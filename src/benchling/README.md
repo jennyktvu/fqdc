@@ -9,9 +9,9 @@ A script to read a input csv and run Benchling API to transfer liquid between co
 ## Example input csv file
 
 ```
-Source Barcode,Dest Barcode,Value,Units
-TUBE-11756,384W-013:A1,50,uL
-TUBE-11756,384W-013:A2,40,uL
+Source Barcode,Dest Plate Barcode,Well,Value,Units
+TUBE-11756,384W-013,A1,50,uL
+TUBE-11756,384W-013,A2,40,uL
 ```
 
 ## Usage

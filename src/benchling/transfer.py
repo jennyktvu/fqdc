@@ -20,7 +20,8 @@ def convert_to_cids(barcodes, token):
     res_dict = json.loads(response.content)
     for c in res_dict["containers"]:
         cids.append(c["id"])
-    print(f"response: {cids}")
+    print(f"status_code: {response.status_code}, response: {cids}")
+    assert(len(cids) == len(barcodes))
     return cids
 
 
@@ -71,6 +72,5 @@ def main():
     do_transfer(transfer_infos, token)
 
 
-#
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-# transfer_test.py
+# transfer.py
 
 A script to read a input csv and run Benchling API to transfer liquid between containers
 
@@ -16,5 +16,14 @@ TUBE-11756,384W-013:A2,40,uL
 
 ## Usage
 
-- Run `python transfer_test.py transfer.csv`
+```
+usage: transfer.py [-h] [-f CSV_PATH] [-t TOKEN]
+
+Benchling liquid Transfer tool
+
+optional arguments:
+  -h, --help   show this help message and exit
+  -f CSV_PATH  input csv file
+  -t TOKEN     Benchling API token
+```
 

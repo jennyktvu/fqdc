@@ -1,0 +1,24 @@
+name: Check Python formatting using Black
+
+on:
+  push:
+    paths:
+      - "**.py"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout base repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Check Black formatting
+        run: black --check .

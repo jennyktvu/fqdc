@@ -1,6 +1,6 @@
-'''
+"""
 It's a handy script to reset test container's volulme
-'''
+"""
 import requests
 import json
 import argparse
@@ -13,13 +13,9 @@ HEADERS = {
     "Content-Type": "application/json",
 }
 
-def set_vol(cid,  value, units, token):
-    payload = {
-        "quantity": {
-            "units": units,
-            "value": value
-        }
-    }
+
+def set_vol(cid, value, units, token):
+    payload = {"quantity": {"units": units, "value": value}}
 
     data = json.dumps(payload, indent=4)
     url = f"{BASE_URL}/containers/{cid}"
@@ -29,6 +25,7 @@ def set_vol(cid,  value, units, token):
     print(
         f"status_code: {response.status_code}, response: {json.loads(response.content)}"
     )
+
 
 def main():
     parser = argparse.ArgumentParser(description="Benchling liquid reset tool")
@@ -43,6 +40,7 @@ def main():
     set_vol("con_WoQmGkgI", 0, "uL", token)
     # reset source containers
     set_vol("con_n4Lnt2G2", 5000, "uL", token)
+
 
 if __name__ == "__main__":
     main()

@@ -21,7 +21,7 @@ def convert_to_cids(barcodes, token):
     for c in res_dict["containers"]:
         cids.append(c["id"])
     print(f"status_code: {response.status_code}, response: {cids}")
-    assert(len(cids) == len(barcodes))
+    assert len(cids) == len(barcodes)
     return cids
 
 

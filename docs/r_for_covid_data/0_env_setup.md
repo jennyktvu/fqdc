@@ -24,20 +24,7 @@ R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
 Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: aarch64-apple-darwin20 (64-bit)
 
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
+...
 > print("hello,world")
 [1] "hello,world"
 ```
@@ -70,7 +57,7 @@ Here are top 10 most important packages in R for data science.
   - mlr3.
 
 
-To install those packages from CRAN, we can just simiply follow follow steps.
+To install those packages from CRAN, we can just simiply follow below steps.
 
 - Start R console
 - Call "install.packages(XXX)"

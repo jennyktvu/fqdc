@@ -203,7 +203,7 @@ Now, let's check the df1 again, we can see all NA has been changed to 0.
 ```
 
 
-## Draw diagram for overal US's covid data
+## Draw diagram for the whole US's data
 
 ```
 > ggplot(df1, aes(fill=cause_of_death, x=year_and_quarter, y=overall_rate)) +
@@ -231,11 +231,11 @@ save_plot("covid_plot.svg", fig = p, width=30, height=20)
 
 see the diagram ![here](covid_plot.svg)
 
-## Draw diagram for overal California covid data
+## Draw diagram for  California data
 
 Do you want to try it by yourself?
 
-## Create/Calculate a new column for covid ratio in "All causes"
+## Create/Calculate a new column for covid ratio
 
 Somehow, we want to get to know the trend for covid ratio.
   - covid_ratio = overall_rate_of_covid / overall_rate_of_all_causes

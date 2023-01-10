@@ -1,8 +1,8 @@
 # Analysis US quartely covid data from CDC
 
-## Identify the goal
+## Goal
 
-We want to get to know the overall death data and COVID realted death data since 2019, so that we can analysis the impact of COVID to the overall pupular death in US in these years.
+According to  overall death data and COVID realted death data since 2019, so that we want to get to know the impact trend of COVID to the overall pupulation death of US in these years.
 
 ## Download the data
 

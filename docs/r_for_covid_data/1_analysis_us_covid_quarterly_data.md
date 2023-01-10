@@ -229,7 +229,7 @@ p = ggplot(df1, aes(fill=cause_of_death, x=year_and_quarter, y=overall_rate)) +
 save_plot("covid_plot.svg", fig = p, width=30, height=20)
 ```
 
-see the diagram [here](covid_plot.svg)
+see the diagram ![here](covid_plot.svg)
 
 ## Draw diagram for overal California covid data
 

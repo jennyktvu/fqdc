@@ -205,9 +205,78 @@ Now, let's check the df1 again, we can see all NA has been changed to 0.
 
 ## Draw diagram for overal US's covid data
 
+```
+> ggplot(df1, aes(fill=cause_of_death, x=year_and_quarter, y=overall_rate)) +
+    geom_bar(position="stack", stat="identity") +
+    geom_col() +
+    geom_smooth(aes(group=cause_of_death)) +
+    scale_y_continuous(breaks=seq(0,1500,100))
+    theme_bw()
+```
+
+It may open a diagram in your computer.
+We also can save the diagram into a file.
+
+```
+library(sjPlot)
+p = ggplot(df1, aes(fill=cause_of_death, x=year_and_quarter, y=overall_rate)) +
+    geom_bar(position="stack", stat="identity") +
+    geom_col() +
+    geom_smooth(aes(group=cause_of_death)) +
+    scale_y_continuous(breaks=seq(0,1500,100)) +
+    theme_bw()
+
+save_plot("covid_plot.svg", fig = p, width=30, height=20)
+```
+
+see the diagram [here](covid_plot.svg)
 
 ## Draw diagram for overal California covid data
 
+Do you want to try it by yourself?
+
 ## Create/Calculate a new column for covid ratio in "All causes"
 
+Somehow, we want to get to know the trend for covid ratio.
+  - covid_ratio = overall_rate_of_covid / overall_rate_of_all_causes
+
+```
+covid_death_rate <- df1 %>%
+    filter(cause_of_death == "COVID-19") %>%
+    select("overall_rate")
+
+all_causes_rate <- df1 %>%
+    filter(cause_of_death == "All causes") %>%
+    select(overall_rate)
+
+covid_ratio <- covid_death_rate / all_causes_rate
+
+df_ratio <- df1 %>%
+    filter(cause_of_death == "All causes") %>%
+    select(year_and_quarter)
+df_ratio["covid_ratio"] = covid_ratio
+
+
+> print(df_ratio)
+# A tibble: 14 × 2
+   year_and_quarter covid_ratio
+   <chr>                  <dbl>
+ 1 2019 Q1              0      
+ 2 2019 Q2              0      
+ 3 2019 Q3              0      
+ 4 2019 Q4              0      
+ 5 2020 Q1              0.00868
+ 6 2020 Q2              0.132  
+ 7 2020 Q3              0.0886 
+ 8 2020 Q4              0.169  
+ 9 2021 Q1              0.171  
+10 2021 Q2              0.0463 
+11 2021 Q3              0.131  
+12 2021 Q4              0.120  
+13 2022 Q1              0.134  
+14 2022 Q2              0.0196 
+```
 ## Draw diagram for covid ratio
+
+
+Do you want to try it by yourself?

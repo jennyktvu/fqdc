@@ -15,7 +15,7 @@ With that, we may get the data source csv, `NCHS_-_VSRR_Quarterly_provisional_es
 
 ## Take a quick look for the data
 
-TO load the data
+To load the data
 ```
 # If "readr" not installed, run install.packages("readr") to install it
 library("readr")
@@ -229,7 +229,7 @@ p = ggplot(df1, aes(fill=cause_of_death, x=year_and_quarter, y=overall_rate)) +
 save_plot("covid_plot.svg", fig = p, width=30, height=20)
 ```
 
-see the diagram ![here](covid_plot.svg)
+![here](covid_plot.svg)
 
 ## Draw diagram for  California data
 

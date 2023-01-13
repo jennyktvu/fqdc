@@ -1,4 +1,4 @@
-# Analysis US COVID peak period from CDC weekly data
+# Analysis US COVID pandemic waves and peaks
 
 ## Goal
 

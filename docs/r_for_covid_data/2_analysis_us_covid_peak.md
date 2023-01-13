@@ -2,7 +2,7 @@
 
 ## Goal
 
-According to weekly data between 2020 to 2022, we want to get to know the wave and peak of COVID in these years.
+According to weekly data between 2020 to 2022, we want to get to know the waves and peaks of COVID pandemic in these years.
 
 ## Download the data
 We will continue to use NCHS(National Center for Health Statistics) as our data source.

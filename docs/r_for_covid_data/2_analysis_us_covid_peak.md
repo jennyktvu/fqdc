@@ -208,8 +208,8 @@ save_plot("covid_plot_weekly_peak.svg", fig = p, width=60, height=20)
  +     filter(state == "United States" & group == "By Week") %>%
  +     select(start_date, total_deaths)
  + sum(df3$total_deaths)
+ + > [1] 10077273  ===> the total death number from 2020 to 2022 
  + summary(df3$total_deaths)
- + > [1] 10077273  ===> the total death number from 2020 to 2022
  >    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
     7100   58522   60451   63780   68610   87415
  >

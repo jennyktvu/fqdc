@@ -116,7 +116,7 @@ summary(fit)
  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-we saw `8.49e-12 ***`, which age has big impact on covid death rate.
+we saw `8.49e-12 ***`, which means age has big impact on covid death rate.
 
 ## Compare diffrent age ranges
 ```

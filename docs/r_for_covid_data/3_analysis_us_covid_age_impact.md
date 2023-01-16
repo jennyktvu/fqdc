@@ -1,4 +1,4 @@
-# Analysis US COVID Data to understand age impact
+# Use ANOVA in R to Analysis US COVID Data to understand age impact to death rate
 
 ## Goal
 

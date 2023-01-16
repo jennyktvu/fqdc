@@ -73,9 +73,10 @@ df2 <- df2 %>%
  10 2019 Q1          rate_age_85_plus           0	
 ```
 
-## Draw diagram
+## Draw diagram for each group
 
-```plotdata <- df2 %>%
+```
+plotdata <- df2 %>%
     group_by(rate_type) %>%
     summarize(n = n(),
             mean = mean(rate_of_10k),

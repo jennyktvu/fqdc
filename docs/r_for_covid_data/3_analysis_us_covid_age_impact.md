@@ -6,15 +6,15 @@ We want to analysis the relationship between age and covid death rate in US.
 ## Download the data
 
 We will use NCHS(National Center for Health Statistics) as our data source.
-Visit https://data.cdc.gov/browse?category=NCHS&sortBy=last_modified, and search `VSRR Quarterly`, we will find the data we are intrest.
+Visit https://data.cdc.gov/browse?category=NCHS&sortBy=last_modified, and search ```VSRR Quarterly```, we will find the data we are intrest.
 
 https://data.cdc.gov/NCHS/NCHS-VSRR-Quarterly-provisional-estimates-for-sele/489q-934x, in this page, we can export data into csv file.
 
-With that, we may can download data source csv, `NCHS_-_VSRR_Quarterly_provisional_estimates_for_selected_indicators_of_mortality.csv`
+With that, we may can download data source csv, ```NCHS_-_VSRR_Quarterly_provisional_estimates_for_selected_indicators_of_mortality.csv```
 
 ## Load the data
 
-`library("dplyr")
+```library("dplyr")
 library("ggplot2")
 library("janitor")
 library("tidyr")
@@ -28,7 +28,7 @@ df <- df %>% rename("rate_age_65_74" = "rate_65_74")
 
 ## Filter and Select
 
-`df1 <- df %>%
+```df1 <- df %>%
     filter(time_period == "3-month period" & rate_type == "Crude" & cause_of_death %in% c("COVID-19")) %>%
     select(year_and_quarter, rate_age_1_4, rate_age_5_14,rate_age_15_24, rate_age_25_34,rate_age_35_44, rate_age_45_54,rate_age_55_64,rate_age_65_74,rate_age_75_84,rate_age_85_plus)
   # take a quick look from column's point of view
@@ -46,12 +46,12 @@ df <- df %>% rename("rate_age_65_74" = "rate_65_74")
  $ rate_age_65_74   <dbl> NA, NA, NA, NA, 19.0, 293.6, 206.7, 413.6, 464.8, 109…
  $ rate_age_75_84   <dbl> NA, NA, NA, NA, 43.9, 725.6, 465.8, 1112.4, 1110.7, 1…
  $ rate_age_85_plus <dbl> NA, NA, NA, NA, 97.7, 2210.8, 1127.2, 3101.9, 2783.8,…
-`
+```
 s
-`
+```
 
-## `pivot_longer` to reorg the data for grouping
-`
+## ```pivot_longer``` to reorg the data for grouping
+```
 df2 = df1 %>% pivot_longer(names_to = "rate_type", values_to = "rate_of_10k",cols = -c(year_and_quarter))
 # convert NA to 0
 df2 <- df2 %>%
@@ -70,11 +70,11 @@ df2 <- df2 %>%
   8 2019 Q1          rate_age_65_74             0
   9 2019 Q1          rate_age_75_84             0
  10 2019 Q1          rate_age_85_plus           0	
-`
+```
 
 ## Draw diagram
 
-`plotdata <- df2 %>%
+```plotdata <- df2 %>%
     group_by(rate_type) %>%
     summarize(n = n(),
             mean = mean(rate_of_10k),
@@ -94,13 +94,13 @@ p = ggplot(plotdata,
          y="rate_of_10k",
          title="Mean Plot with 95% Confidence Interval")
 save_plot("covid_plot_age_impact1.svg", fig = p, width=30, height=20)
-`
+```
 ![here](covid_plot_age_impact1.svg)
 
 
 ## ANOVA analysis
 
-`fit <- aov(rate_of_10k ~ rate_type, data=df2)
+```fit <- aov(rate_of_10k ~ rate_type, data=df2)
 summary(fit)
 !> summary(fit)
               Df   Sum Sq Mean Sq F value   Pr(>F)
@@ -108,12 +108,12 @@ summary(fit)
  Residuals   130 18370513  141312
  ---
  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-`
+```
 
-we saw `8.49e-12 ***`, which means diffrent age agens have big diffrence about covid death reate, in another words, age has big impact on covid death rate.
+we saw ```8.49e-12 ***```, which means diffrent age agens have big diffrence about covid death reate, in another words, age has big impact on covid death rate.
 
 ## Compare diffrent age ranges
-`pairwise <- TukeyHSD(fit)
+```pairwise <- TukeyHSD(fit)
 pairwise
  + pairwise
  >   Tukey multiple comparisons of means
@@ -129,14 +129,14 @@ pairwise
  rate_age_45_54-rate_age_1_4       43.45714286 -413.96259  500.8769 0.9999996
  rate_age_5_14-rate_age_1_4        -0.02857143 -457.44831  457.3912 1.0000000
  ....
-`
+```
 
-if `p adj` is close to 1, it means `no big difference` for this pair
-if `p adj` is close to 0, it means `big difference` for this pair
+if ```p adj``` is close to 1, it means ```no big difference``` for this pair
+if ```p adj``` is close to 0, it means ```big difference``` for this pair
 
 
 ## Draw diagram for pairs comparisons
-`plotdata <- as.data.frame(pairwise[[1]])
+```plotdata <- as.data.frame(pairwise[[1]])
 plotdata$conditions <- row.names(plotdata)
 p = ggplot(data=plotdata, aes(x=conditions, y=diff)) +
   geom_errorbar(aes(ymin=lwr, ymax=upr, width=.2)) +
@@ -147,7 +147,7 @@ p = ggplot(data=plotdata, aes(x=conditions, y=diff)) +
        title="95% family-wise confidence level") +
    coord_flip()
 save_plot("covid_plot_age_impact2.svg", fig = p, width=30, height=20)
-`
+```
 
 ![here](covid_plot_age_impact2.svg)
 

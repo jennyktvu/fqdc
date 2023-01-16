@@ -163,6 +163,6 @@ save_plot("covid_plot_age_impact2.svg", fig = p, width=30, height=20)
 
 ## Conclusion
 
-- Age does have big impact for covid death rate
-- 85+ was impacted the most
-- For 35- the death rate is very low, and no big difference from age 0-35
+- Age does have big impact for covid death rate.
+- 85+ was impacted the most.
+- For 35-,  the death rate is very low, and no big difference from age 0-35.

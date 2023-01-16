@@ -116,7 +116,7 @@ summary(fit)
  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-we saw `8.49e-12 ***`, which means diffrent age agens have big diffrence about covid death reate, in another words, age has big impact on covid death rate.
+we saw `8.49e-12 ***`, which age has big impact on covid death rate.
 
 ## Compare diffrent age ranges
 ```
@@ -163,6 +163,6 @@ save_plot("covid_plot_age_impact2.svg", fig = p, width=30, height=20)
 
 ## Conclusion
 
-- Age does have big impact for covid death rate
-- 85+ was impacted the most
-- For 35- the death rate is very low, and no big difference from age 0-35
+- Age does have big impact for covid death rate.
+- 85+ was impacted the most.
+- For 35-,  the death rate is very low, and no big difference from age 0-35.

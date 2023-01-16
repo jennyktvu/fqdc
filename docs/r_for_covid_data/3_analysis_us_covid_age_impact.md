@@ -14,7 +14,8 @@ With that, we may can download data source csv, ```NCHS_-_VSRR_Quarterly_provisi
 
 ## Load the data
 
-```library("dplyr")
+```
+library("dplyr")
 library("ggplot2")
 library("janitor")
 library("tidyr")
@@ -24,11 +25,12 @@ df <- readr::read_csv(file.path(getwd(), "NCHS_-_VSRR_Quarterly_provisional_esti
 df <- clean_names(df)
 # To fix the colname format from origin csv file
 df <- df %>% rename("rate_age_65_74" = "rate_65_74")
-
+```
 
 ## Filter and Select
 
-```df1 <- df %>%
+```
+df1 <- df %>%
     filter(time_period == "3-month period" & rate_type == "Crude" & cause_of_death %in% c("COVID-19")) %>%
     select(year_and_quarter, rate_age_1_4, rate_age_5_14,rate_age_15_24, rate_age_25_34,rate_age_35_44, rate_age_45_54,rate_age_55_64,rate_age_65_74,rate_age_75_84,rate_age_85_plus)
   # take a quick look from column's point of view
@@ -47,8 +49,7 @@ df <- df %>% rename("rate_age_65_74" = "rate_65_74")
  $ rate_age_75_84   <dbl> NA, NA, NA, NA, 43.9, 725.6, 465.8, 1112.4, 1110.7, 1…
  $ rate_age_85_plus <dbl> NA, NA, NA, NA, 97.7, 2210.8, 1127.2, 3101.9, 2783.8,…
 ```
-s
-```
+
 
 ## ```pivot_longer``` to reorg the data for grouping
 ```
@@ -99,8 +100,12 @@ save_plot("covid_plot_age_impact1.svg", fig = p, width=30, height=20)
 
 
 ## ANOVA analysis
+Analysis of variance (ANOVA) is a collection of statistical models and their associated estimation procedures (such as the "variation" among and between groups) used to analyze the differences among means.
+It's very useful in our case, `aov` from R make it very easy to use, see https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/aov for more detail.
 
-```fit <- aov(rate_of_10k ~ rate_type, data=df2)
+
+```
+fit <- aov(rate_of_10k ~ rate_type, data=df2)
 summary(fit)
 !> summary(fit)
               Df   Sum Sq Mean Sq F value   Pr(>F)
@@ -110,11 +115,13 @@ summary(fit)
  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-we saw ```8.49e-12 ***```, which means diffrent age agens have big diffrence about covid death reate, in another words, age has big impact on covid death rate.
+we saw `8.49e-12 ***`, which means diffrent age agens have big diffrence about covid death reate, in another words, age has big impact on covid death rate.
 
 ## Compare diffrent age ranges
-```pairwise <- TukeyHSD(fit)
+```
+pairwise <- TukeyHSD(fit)
 pairwise
+
  + pairwise
  >   Tukey multiple comparisons of means
      95% family-wise confidence level
@@ -131,12 +138,13 @@ pairwise
  ....
 ```
 
-if ```p adj``` is close to 1, it means ```no big difference``` for this pair
-if ```p adj``` is close to 0, it means ```big difference``` for this pair
+if `p adj` is close to 1, it means `no big difference` for this pair
+if `p adj` is close to 0, it means `big difference` for this pair
 
 
 ## Draw diagram for pairs comparisons
-```plotdata <- as.data.frame(pairwise[[1]])
+```
+plotdata <- as.data.frame(pairwise[[1]])
 plotdata$conditions <- row.names(plotdata)
 p = ggplot(data=plotdata, aes(x=conditions, y=diff)) +
   geom_errorbar(aes(ymin=lwr, ymax=upr, width=.2)) +

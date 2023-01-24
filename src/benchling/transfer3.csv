@@ -1,0 +1,4 @@
+ID,Status,Assignee,Scheduled on,Source Container,Source Well,Destination Container,Destination Column (124),Volume,Instrument
+CPPSEEDING1-RUN1,Pending,,,96W427,A1,384W013,1,50,Fluent
+CPPSEEDING1-RUN2,Pending,,,96W427,A1,384W013,2,50,Fluent
+CPPSEEDING1-RUN3,Pending,,,96W427,A1,384W013,3,50,Fluent

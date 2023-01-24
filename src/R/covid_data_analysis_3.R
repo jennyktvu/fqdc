@@ -65,9 +65,15 @@ save_plot("covid_plot_age_impact1.svg", fig = p, width=30, height=20)
 #        title="Mean Plot with 95% Confidence Interval")
                                         #
 
-
+df2$rate_type = as.factor(df2$rate_type)
 fit <- aov(rate_of_10k ~ rate_type, data=df2)
 summary(fit)
+outlierTest(fit)
+bartlett.test(rate_of_10k ~ rate_type, data=df2)
+
+library("car")
+qqPlot(fit, simulate=TRUE, main="Q-Q test")
+
 
 pairwise <- TukeyHSD(fit)
 pairwise
@@ -84,5 +90,24 @@ p = ggplot(data=plotdata, aes(x=conditions, y=diff)) +
   theme_bw() +
   labs(y="Difference in mean levels", x="",
        title="95% family-wise confidence level") +
-   coord_flip()
+    coord_flip()
+p
 save_plot("covid_plot_age_impact2.svg", fig = p, width=30, height=20)
+
+
+set.seed(69)
+x <- rnorm(100)
+qqPlot(x)
+
+library(multcomp)
+tuk <- glht(fit, linfct = mcp(rate_type="Tukey"))
+summary(tuk)
+labels1 <- cld(tuk, level=.05)$mcletters$Letters
+labels2 <- paste(names(labels1), "\n", labels1)
+ggplot(data=fit$model, aes(x=rate_type, y=rate_of_10k)) +
+  scale_x_discrete(breaks=names(labels1), labels=labels2) +
+  geom_boxplot(fill="lightgrey") +
+  theme_bw() +
+  labs(x="rate_type",
+       title="Distribution of rate Scores by rate_type",
+       subtitle="Groups without overlapping letters differ signifcantly (p < .05)")
